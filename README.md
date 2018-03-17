@@ -5,7 +5,14 @@ Simple, high-level promise-based helpers for [Kue (the Node.js job Queue)](https
 yarn add kue-helpers
 ```
 
-# Docs
+# Usage
+The default export is a function which has one required parameter: a redis url to provide to Kue. When supplied with a redis url, that function will return an object with the helper methods.
+
+```
+const kueHelpers = require('kue-helpers')(REDIS_URL)
+```
+
+## Helper Methods
 ### getQueue
 No parameters.
 
