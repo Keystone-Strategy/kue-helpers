@@ -1,0 +1,31 @@
+{
+  "name": "kue-helpers",
+  "version": "1.0.0",
+  "description": "Simple, high-level promise-based helpers for Kue (the Node.js job Queue).",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Keystone-Strategy/kue-helpers.git"
+  },
+  "keywords": [
+    "kue",
+    "kue",
+    "helpers",
+    "kue",
+    "promise"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Keystone-Strategy/kue-helpers/issues"
+  },
+  "homepage": "https://github.com/Keystone-Strategy/kue-helpers#readme",
+  "dependencies": {
+    "jest": "^22.4.2",
+    "kue": "^0.11.6",
+    "sinon": "^4.4.6"
+  }
+}
