@@ -10,6 +10,8 @@ The default export is a function which has one required parameter: a redis url t
 
 ```
 const kueHelpers = require('kue-helpers')(REDIS_URL)
+
+kueHelpers.getQueue() // the queue object from Kue
 ```
 
 ## Helper Methods
