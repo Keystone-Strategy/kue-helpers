@@ -25,7 +25,6 @@
   "homepage": "https://github.com/Keystone-Strategy/kue-helpers#readme",
   "dependencies": {
     "jest": "^22.4.2",
-    "kue": "^0.11.6",
-    "sinon": "^4.4.6"
+    "kue": "^0.11.6"
   }
 }
