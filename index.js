@@ -17,9 +17,11 @@ const enqueueJob = (jobName, jobData) => {
       .removeOnComplete(true)
       .save()
       .on('complete', res => {
+        console.log('response', res)
         resolve(res)
       })
       .on('failed', err => {
+        console.log('error: ', err)
         reject(err)
       })
   })
