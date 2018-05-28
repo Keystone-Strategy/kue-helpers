@@ -1,7 +1,6 @@
 const kue = require('kue')
 
 let getQueue
-let errorHandler
 
 const getQueueBuilder = redisUrl => () => {
   return kue.createQueue({
@@ -21,7 +20,9 @@ const enqueueJob = (jobName, jobData) => {
         resolve(res)
       })
       .on('failed', err => {
-        if (errorHandler) return reject(errorHandler(err))
+        reject(err)
+      })
+      .on('error', err => {
         reject(err)
       })
   })
@@ -50,14 +51,12 @@ const processAsyncJob = (jobName, asyncFn) => {
   })
 }
 
-module.exports = (redisUrl, errorHandlerFunction)=> {
+module.exports = redisUrl => {
   if (typeof redisUrl !== 'string') {
     throw new Error('Missing parameter redisUrl. A valid Redis URL is needed to provide to Kue.')
   }
 
   getQueue = getQueueBuilder(redisUrl)
-
-  errorHandler = errorHandlerFunction
 
   return {
     getQueue,
