@@ -56,19 +56,3 @@ processAsyncJob('ExpensesBulkUpdate', async job => {
   ... etc
 })
 ```
-
-## Error Handling
-You can pass a function on the initialization for treat the error message returned by Kue.
-The process will be rejected with the result of applying that function to the message returned by Kue.
-
-Example
-```
-const errorHlandlerFunction = errorMessage => new Error('Worker Error: ${errorMessage}')
-const kueHelpers = require('kue-helpers')(REDIS_URL)
-```
-
-Yes only error messages, not the stack trace, are passed back to the server process - here is why:
-[Send along error message when emitting a failed event](https://github.com/Automattic/kue/issues/461#issuecomment-62698472)
-
-Also you can see the 
-[Source Code](https://github.com/Automattic/kue/commit/7ff625240e86e4c0db47a9bf03bf6a976b481c52)
