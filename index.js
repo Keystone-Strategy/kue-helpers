@@ -22,6 +22,9 @@ const enqueueJob = (jobName, jobData) => {
       .on('failed', err => {
         reject(err)
       })
+      .on('error', err => {
+        reject(err)
+      })
   })
 }
 
