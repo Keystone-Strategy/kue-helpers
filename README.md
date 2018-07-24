@@ -46,8 +46,9 @@ kue.createQueue(...).process(jobName, (job, done) => {
 
 ### processAsyncJob
 Parameters:
-1. Job Name (String)
-2. async Function
+1. Database connection (Function). A function to get the status of the database connection. Expects an object to be returned with a property called `readyState` that represents that connection status of the database. A ready state of 1 means the database is connected and a ready state of anything other than 1 means that database isn't connected and will cause an error to be thrown in the job.
+2. Job Name (String)
+3. async Function
 
 Example
 ```
