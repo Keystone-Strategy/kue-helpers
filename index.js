@@ -1,4 +1,7 @@
-const kue = require('kue')
+const kue = require("kue")
+
+const NOT_CONNECTED_TO_DB_MESSAGE =
+	"Worker not connected to database. kue-helpers checked the database connection and it was not equal to 1. This means that the database isn't connected and will cause the worker thread to hang since Mongoose queues requests, which then time out. Please fix the database connection and restart the worker."
 
 let getQueue
 
@@ -38,11 +41,12 @@ const handleResponse = (promise, done) => {
     })
 }
 
-const processAsyncJob = (jobName, asyncFn) => {
+const processAsyncJob = connectToDatabase => (jobName, asyncFn) => {
   const queue = getQueue()
 
   queue.process(jobName, async (job, done) => {
     try {
+      if (connectToDatabase().readyState !== 1) throw new Error(NOT_CONNECTED_TO_DB_MESSAGE)
       const result = await asyncFn(job)
       done(null, result)
     } catch (err) {
